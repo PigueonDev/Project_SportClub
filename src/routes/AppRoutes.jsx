@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 import Unauthorized from "../pages/Unauthorized";
 
 import UserDashboard from "../pages/user/UserDashboard";
@@ -21,6 +22,7 @@ function AppRoutes() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
 
                 <Route path="/user" element={<RoleRoute allowedRoles={["user"]}><UserLayout /></RoleRoute>}>

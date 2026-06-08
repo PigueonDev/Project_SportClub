@@ -1,48 +1,47 @@
-const API_URL = 'http://localhost:3000/api/auth';
+const API_URL = "http://localhost:3000/api/auth"
 
 // Login contra el backend
 export async function loginUser(credentials) {
-    const response = await fetch(`${API_URL}/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    });
+  const response = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  })
 
-    const data = await response.json();
+  const data = await response.json()
 
-    if (response.ok) {
-        throw new Error(data.message || "Error al inciar sesión");
-    }
+  // ✅ Lanza error si NO es exitoso (estaba al revés)
+  if (!response.ok) {
+    throw new Error(data.message || "Error al iniciar sesión")
+  }
 
-    return data;
+  return data
 }
 
-// Guardar sesion en el navegador
+// Guardar sesión en el navegador
 export function saveSession(token, user) {
-    LocalStorage.setItem('token', token);
-    LocalStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem("token", token)           // ✅ minúscula
+  localStorage.setItem("user", JSON.stringify(user))
 }
 
-// obtener token
+// Obtener token
 export function getToken() {
-    return LocalStorage.getItem('token');
+  return localStorage.getItem("token")           // ✅ minúscula
 }
 
-// obtener usuario
+// Obtener usuario
 export function getUser() {
-    const user = LocalStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+  const user = localStorage.getItem("user")      // ✅ minúscula
+  return user ? JSON.parse(user) : null
 }
 
-// Verificar si existe sesion
+// Verificar si existe sesión
 export function isAuthenticated() {
-    return Boolean(getToken());
+  return Boolean(getToken())
 }
 
-// Cerrar sesion
+// Cerrar sesión
 export function logout() {
-    LocalStorage.removeItem('token');
-    LocalStorage.removeItem('user');
+  localStorage.removeItem("token")               // ✅ minúscula
+  localStorage.removeItem("user")
 }

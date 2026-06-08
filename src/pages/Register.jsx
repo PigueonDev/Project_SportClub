@@ -30,10 +30,35 @@ function Register() {
   // ── VALIDACIÓN ────────────────────────────────────────
   function validar() {
     const errs = {}
-    if (!fullName.trim())         errs.fullName  = "El nombre es obligatorio"
-    if (!email.trim())            errs.email     = "El email es obligatorio"
-    if (password.length < 8)      errs.password  = "Mínimo 8 caracteres"
-    if (password !== confirm)     errs.confirm   = "Las contraseñas no coinciden"
+    
+    // Validaciones de Nombre completo
+    if (!fullName.trim()) {
+      errs.fullName = "El nombre es obligatorio"
+    } else if (fullName.trim().split(/\s+/).length < 2) {
+      errs.fullName = "Ingresa al menos nombre y apellido"
+    } else if (fullName.length > 70) {
+      errs.fullName = "El nombre no puede superar los 70 caracteres"
+    }
+    
+    // Validaciones de Correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email.trim()) {
+      errs.email = "El email es obligatorio"
+    } else if (email.length > 60) {
+      errs.email = "El email no puede superar los 60 caracteres"
+    } else if (!emailRegex.test(email)) {
+      errs.email = "El email no es válido"
+    }
+
+
+    // Validaciones de Contraseña
+    if (password.length < 8) {
+      errs.password = "Mínimo 8 caracteres"
+    }
+    if (password !== confirm) {
+      errs.confirm = "Las contraseñas no coinciden"
+    }
+    
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
@@ -103,6 +128,7 @@ function Register() {
                   <Form.Control
                     type="text"
                     placeholder="Tu nombre completo"
+                    maxLength={70}
                     value={fullName}
                     onChange={e => setFullName(e.target.value)}
                     isInvalid={!!errors.fullName}
@@ -115,6 +141,7 @@ function Register() {
                   <Form.Control
                     type="email"
                     placeholder="tu@correo.com"
+                    maxLength={60}
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     isInvalid={!!errors.email}

@@ -17,7 +17,7 @@ function AdminLayout() {
                     <Navbar.Brand>SportClub Admin</Navbar.Brand>
 
                     <Nav className="me-auto">
-                        <Link ClassName="nav-link" to="/admin/dashboard">Dashboard</Link>
+                        <Link ClassName="nav-link" to="/admin/AdminDashboard">Dashboard</Link>
                     </Nav>
 
                     <span className="text-white me-3">

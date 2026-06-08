@@ -4,9 +4,9 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Unauthorized from "../pages/Unauthorized";
 
-import UserDashboard from "../pages/UserDashboard";
-import CoachDashboard from "../pages/CoachDashboard";
-import AdminDashboard from "../pages/AdminDashboard";
+import UserDashboard from "../pages/user/UserDashboard";
+import CoachDashboard from "../pages/coach/CoachDashboard";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 
 import UserLayout from "../layouts/UserLayout";
 import CoachLayout from "../layouts/CoachLayout";

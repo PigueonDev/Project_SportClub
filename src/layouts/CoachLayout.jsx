@@ -3,37 +3,10 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { logout, getUser } from "../services/authService";
 
 function CoachLayout() {
-    const navigate = useNavigate();
-    const user = getUser();
-    const handleLogout = () => {
-        logout();
-        navigate("/login");
-    }
-
     return (
-        <>
-            <Navbar bg="dark" variant="dark" expand="lg">
-                <Container>
-                    <Navbar.Brand>SportClub Coach</Navbar.Brand>
-
-                    <Nav className="me-auto">
-                        <Link ClassName="nav-link" to="/coach/CoachDashboard">Dashboard</Link>
-                    </Nav>
-
-                    <span className="text-white me-3">
-                        {user?.name}
-                    </span>
-
-                    <Button variant="outline-light" onClick={handleLogout}>
-                        Cerrar Sesión
-                    </Button>
-                </Container>
-            </Navbar>
-
-            <Container className="mt-4">
-                <Outlet />
-            </Container>
-        </>
+        <div style={{ backgroundColor: '#1a0f2a', minHeight: '100vh' }}>
+            <Outlet />
+        </div>
     );
 }
 

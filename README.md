@@ -1,16 +1,36 @@
-# React + Vite
+# SportClub - Plataforma de Gestión Fitness
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plataforma web enfocada en el bienestar, compromiso y superación personal, diseñada para administrar usuarios, clases y reservas en un entorno de club deportivo. Cuenta con paneles inmersivos y adaptados según el rol (Administrador, Coach y Usuario).
 
-Currently, two official plugins are available:
+## Integrantes
+* Cristhopher Rubio
+* Asignatura: Front End
+* Institución: INACAP
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend:**
+* **React.js** (Librería principal)
+* **Vite** (Empaquetador y entorno de desarrollo)
+* **React Bootstrap** (Estructura, grillas y componentes nativos como Modales)
+* **React Router DOM** (Gestión de rutas y navegación protegida)
+* **SweetAlert2** (Gestión de alertas modernas, notificaciones de éxito y confirmaciones de eliminación)
 
-## Expanding the ESLint configuration
+**Backend:**
+* **Node.js / Express** (API REST)
+* **SQLITE FRONT END BACKEND ENTREGADO POR EL PROFE
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Cómo instalar dependencias
+
+Para ejecutar este proyecto en un entorno local, es necesario instalar los paquetes de Node tanto en el cliente (Frontend) como en el servidor (Backend).
+
+1. **Instalación del Backend:**
+   Abre una terminal, dirígete a la carpeta del backend y ejecuta el siguiente comando:
+   ```bash
+   
+   npm install
+   npm run dev

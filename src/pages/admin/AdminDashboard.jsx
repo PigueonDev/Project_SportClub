@@ -211,6 +211,7 @@ export default function AdminDashboard() {
             <Button variant="warning" className="text-start border-0 text-warning fw-semibold mb-1" style={{ backgroundColor: 'rgba(242, 183, 5, 0.15)' }}>👤 Usuarios</Button>
             <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">📊 Estadísticas</Button>
             <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">📁 Reportes</Button>
+            <Button variant="link" onClick={() => navigate('/admin/deportes')} className="text-start text-white-50 text-decoration-none hover-white">🏆 Deportes</Button>
           </Nav>
           <div className="mt-auto pt-3 border-top border-secondary d-flex flex-column gap-2">
             <Button variant="link" className="text-start text-warning text-decoration-none">✏️ Editar perfil</Button>

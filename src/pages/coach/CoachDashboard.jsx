@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Badge, Table, Button, Nav, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Table, Button, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { getUser, logout } from '../../services/authService';
+import { getUser } from '../../services/authService';
+import CoachSidebar from '../../components/CoachSidebar';
 
 export default function CoachDashboard() {
   const navigate = useNavigate();
@@ -57,47 +58,11 @@ export default function CoachDashboard() {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-
   return (
     <Container fluid className="vh-100 p-0" style={{ backgroundColor: '#1a0f2a' }}>
       <Row className="g-0 h-100">
         
-        {/* SIDEBAR COACH - CONECTADO A LA API */}
-        <Col md={2} className="d-flex flex-column p-3 shadow" style={{ backgroundColor: '#2E1A47' }}>
-          <div className="mb-4 px-2 text-center">
-            <img src="/logo.png" alt="SportClub Logo" style={{ height: '50px', width: 'auto' }} />
-          </div>
-
-          <div className="d-flex align-items-center gap-3 mb-4 px-2 pb-3 border-bottom border-secondary">
-            <div className="rounded-circle d-flex justify-content-center align-items-center text-white fw-bold shadow-sm" 
-                 style={{ width: '45px', height: '45px', background: 'linear-gradient(135deg, #3d2460, #F2B705)' }}>
-              {coachUser.initials}
-            </div>
-            <div className="text-white">
-              {/* Nombre dinámico traído desde la API */}
-              <div className="fw-semibold lh-1" style={{ fontSize: '0.9rem' }}>{coachUser.name}</div>
-              <small className="text-white-50" style={{ fontSize: '0.75rem' }}>Coach</small>
-            </div>
-          </div>
-
-          <Nav className="flex-column mb-auto gap-1">
-            <Button variant="success" className="text-start border-0 text-white fw-semibold mb-1" style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)' }}>
-              🏠 Inicio
-            </Button>
-            <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">👥 Mis Alumnos</Button>
-            <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">📋 Clases</Button>
-            <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">📊 Reportes</Button>
-          </Nav>
-
-          <div className="mt-auto pt-3 border-top border-secondary d-flex flex-column gap-2">
-            <Button variant="link" className="text-start text-warning text-decoration-none">✏️ Editar perfil</Button>
-            <Button variant="link" className="text-start text-danger text-decoration-none" onClick={handleLogout}>↩ Cerrar sesión</Button>
-          </div>
-        </Col>
+        <CoachSidebar active="inicio" />
 
         {/* MAIN CONTENT COACH */}
         <Col md={10} className="p-4 p-md-5 overflow-auto">
@@ -185,7 +150,12 @@ export default function CoachDashboard() {
             <Col md={6}>
               <Card className="border-0 shadow-sm h-100" style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}>
                 <Card.Body className="p-4">
-                  <h6 className="text-white-50 text-uppercase fw-bold mb-4" style={{ borderLeft: '3px solid #22c55e', paddingLeft: '8px' }}>Clases Asignadas</h6>
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h6 className="text-white-50 text-uppercase fw-bold mb-0" style={{ borderLeft: '3px solid #22c55e', paddingLeft: '8px' }}>Clases Asignadas</h6>
+                    <Button variant="link" className="p-0 text-success text-decoration-none" style={{ fontSize: '0.85rem' }} onClick={() => navigate('/coach/mis-clases')}>
+                      Ver todas →
+                    </Button>
+                  </div>
                   
                   <div className="d-flex justify-content-between align-items-center mb-3 p-3 rounded" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
                     <div>
@@ -218,7 +188,12 @@ export default function CoachDashboard() {
           {/* HORARIO SEMANAL */}
           <Card className="border-0 shadow-sm" style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}>
             <Card.Body className="p-4">
-              <h6 className="text-white-50 text-uppercase fw-bold mb-4" style={{ borderLeft: '3px solid #22c55e', paddingLeft: '8px' }}>Mi Horario Semanal</h6>
+              <div className="d-flex justify-content-between align-items-center mb-4">
+                <h6 className="text-white-50 text-uppercase fw-bold mb-0" style={{ borderLeft: '3px solid #22c55e', paddingLeft: '8px' }}>Mi Horario Semanal</h6>
+                <Button variant="link" className="p-0 text-success text-decoration-none" style={{ fontSize: '0.85rem' }} onClick={() => navigate('/coach/mi-horario')}>
+                  Ver horario completo →
+                </Button>
+              </div>
               <Table bordered variant="dark" className="text-center align-middle" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
                 <thead>
                   <tr className="text-white-50">

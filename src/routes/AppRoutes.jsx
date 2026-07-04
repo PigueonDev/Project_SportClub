@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "../pages/Home";
+import Home from "../pages/home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Unauthorized from "../pages/Unauthorized";
@@ -9,6 +9,13 @@ import UserDashboard from "../pages/user/UserDashboard";
 import CoachDashboard from "../pages/coach/CoachDashboard";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import GestionDeportes from "../pages/admin/GestionDeportes";
+import GestionSalas from "../pages/admin/GestionSalas";
+import GestionAsignaciones from "../pages/admin/GestionAsignaciones";
+import GestionHorarios from "../pages/admin/GestionHorarios";
+import MisClases from "../pages/coach/MisClases";
+import MiHorario from "../pages/coach/MiHorario";
+import ClasesDisponibles from "../pages/user/ClasesDisponibles";
+import MisReservas from "../pages/user/MisReservas";
 
 import UserLayout from "../layouts/UserLayout";
 import CoachLayout from "../layouts/CoachLayout";
@@ -28,15 +35,22 @@ function AppRoutes() {
 
                 <Route path="/user" element={<RoleRoute allowedRoles={["user"]}><UserLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<UserDashboard />} />
+                    <Route path="clases" element={<ClasesDisponibles />} />
+                    <Route path="mis-reservas" element={<MisReservas />} />
                 </Route>
 
                 <Route path="/coach" element={<RoleRoute allowedRoles={["coach"]}><CoachLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<CoachDashboard />} />
+                    <Route path="mis-clases" element={<MisClases />} />
+                    <Route path="mi-horario" element={<MiHorario />} />
                 </Route>
 
                 <Route path="/admin" element={<RoleRoute allowedRoles={["admin"]}><AdminLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<AdminDashboard />} />
                     <Route path="deportes" element={<GestionDeportes />} />
+                    <Route path="salas" element={<GestionSalas />} />
+                    <Route path="asignaciones" element={<GestionAsignaciones />} />
+                    <Route path="horarios" element={<GestionHorarios />} />
                 </Route>
 
                 <Route path="/perfil" element={<ProtectedRoute><h1>Perfil de usuario autenticado</h1></ProtectedRoute>} />

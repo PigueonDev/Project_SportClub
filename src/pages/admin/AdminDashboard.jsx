@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Badge, Table, Button, Nav, Modal, Form, Spinner } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Card, Badge, Table, Button, Modal, Form, Spinner } from 'react-bootstrap';
 import Swal from 'sweetalert2'; // <-- Importamos SweetAlert2
-import { getUser, logout } from '../../services/authService';
+import { getUser } from '../../services/authService';
+import AdminSidebar from '../../components/AdminSidebar';
 
 export default function AdminDashboard() {
-  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({ name: 'Cargando...', initials: '?' });
   
   const [usersList, setUsersList] = useState([]);
@@ -56,24 +55,6 @@ export default function AdminDashboard() {
     }
   };
 
-  // SweetAlert2 para Confirmar Cierre de Sesión
-  const handleLogout = async () => {
-    const result = await Swal.fire({
-      title: '¿Cerrar sesión?',
-      text: "Saldrás de tu cuenta actual",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#F2B705',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Sí, salir',
-      cancelButtonText: 'Cancelar'
-    });
-
-    if (result.isConfirmed) {
-      logout();
-      navigate("/login");
-    }
-  };
 
   const openNewUserModal = () => {
     setIsEditing(false);
@@ -191,33 +172,7 @@ export default function AdminDashboard() {
     <Container fluid className="vh-100 p-0" style={{ backgroundColor: '#1a0f2a' }}>
       <Row className="g-0 h-100">
         
-        {/* SIDEBAR ADMIN */}
-        <Col md={2} className="d-flex flex-column p-3 shadow" style={{ backgroundColor: '#2E1A47' }}>
-          <div className="mb-4 px-2 text-center">
-            <img src="/logo.png" alt="SportClub Logo" style={{ height: '50px', width: 'auto' }} />
-          </div>
-          <div className="d-flex align-items-center gap-3 mb-4 px-2 pb-3 border-bottom border-secondary">
-            <div className="rounded-circle d-flex justify-content-center align-items-center text-white fw-bold shadow-sm" 
-                 style={{ width: '45px', height: '45px', background: 'linear-gradient(135deg, #3d2460, #F2B705)' }}>
-              {currentUser.initials}
-            </div>
-            <div className="text-white">
-              <div className="fw-semibold lh-1" style={{ fontSize: '0.9rem' }}>{currentUser.name}</div>
-              <small className="text-white-50" style={{ fontSize: '0.75rem' }}>Administrador</small>
-            </div>
-          </div>
-          <Nav className="flex-column mb-auto gap-1">
-            <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">🏠 Inicio</Button>
-            <Button variant="warning" className="text-start border-0 text-warning fw-semibold mb-1" style={{ backgroundColor: 'rgba(242, 183, 5, 0.15)' }}>👤 Usuarios</Button>
-            <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">📊 Estadísticas</Button>
-            <Button variant="link" className="text-start text-white-50 text-decoration-none hover-white">📁 Reportes</Button>
-            <Button variant="link" onClick={() => navigate('/admin/deportes')} className="text-start text-white-50 text-decoration-none hover-white">🏆 Deportes</Button>
-          </Nav>
-          <div className="mt-auto pt-3 border-top border-secondary d-flex flex-column gap-2">
-            <Button variant="link" className="text-start text-warning text-decoration-none">✏️ Editar perfil</Button>
-            <Button variant="link" className="text-start text-danger text-decoration-none" onClick={handleLogout}>↩ Cerrar sesión</Button>
-          </div>
-        </Col>
+        <AdminSidebar active="usuarios" />
 
         {/* MAIN CONTENT ADMIN */}
         <Col md={10} className="p-4 p-md-5 overflow-auto">

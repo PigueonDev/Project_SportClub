@@ -5,8 +5,9 @@ import AdminSidebar from '../../components/AdminSidebar';
 import { getSportRooms, createSportRoom, updateSportRoom, deleteSportRoom } from '../../services/sportRoomsService';
 import { getSports } from '../../services/sportsService';
 import { getRooms } from '../../services/roomsService';
+import { API_BASE_URL } from '../../config/api';
 
-const API_USERS_URL = "http://localhost:3000/api/users";
+const API_USERS_URL = `${API_BASE_URL}/users`;
 const emptyForm = { sport_id: '', room_id: '', coach_id: '', observation: '', status: true };
 
 export default function GestionAsignaciones() {

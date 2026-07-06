@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Badge, Table, Button, Modal, Form, Spinner }
 import Swal from 'sweetalert2'; // <-- Importamos SweetAlert2
 import { getUser } from '../../services/authService';
 import AdminSidebar from '../../components/AdminSidebar';
+import { API_BASE_URL } from '../../config/api';
 
 export default function AdminDashboard() {
   const [currentUser, setCurrentUser] = useState({ name: 'Cargando...', initials: '?' });
@@ -16,7 +17,7 @@ export default function AdminDashboard() {
   const [form, setForm] = useState({ name: '', email: '', role: 'user', password: '', confirm: '' });
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:3000/api/users";
+  const API_URL = `${API_BASE_URL}/users`;
 
   const getInitials = (name) => {
     if (!name) return "?";

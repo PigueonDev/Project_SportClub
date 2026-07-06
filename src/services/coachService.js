@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:3000/api/coach";
+import { API_BASE_URL } from '../config/api';
+
+const API_URL = `${API_BASE_URL}/coach`;
 
 const getHeaders = () => {
   const token = localStorage.getItem("token");

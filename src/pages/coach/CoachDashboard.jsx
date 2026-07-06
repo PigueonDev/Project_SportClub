@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Badge, Table, Button, Spinner } from 'react-
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../../services/authService';
 import CoachSidebar from '../../components/CoachSidebar';
+import { API_BASE_URL } from '../../config/api';
 
 export default function CoachDashboard() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function CoachDashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:3000/api/users";
+  const API_URL = `${API_BASE_URL}/users`;
 
   // Función para obtener las iniciales del nombre real
   const getInitials = (name) => {
